@@ -1,5 +1,7 @@
 package by.pattern.creational.builder;
 
+import java.util.Objects;
+
 public class BigObject {
 
     private String id;  //necessary
@@ -43,7 +45,19 @@ public class BigObject {
         this.available = builder.available;
         this.deleted = builder.deleted;
         this.image = builder.image;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BigObject bigObject = (BigObject) o;
+        return quantity == bigObject.quantity && priceInCents == bigObject.priceInCents && available == bigObject.available && deleted == bigObject.deleted && Objects.equals(id, bigObject.id) && Objects.equals(name, bigObject.name) && Objects.equals(description, bigObject.description) && Objects.equals(type, bigObject.type) && Objects.equals(color, bigObject.color) && Objects.equals(size, bigObject.size) && Objects.equals(price, bigObject.price) && Objects.equals(image, bigObject.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, type, color, size, price, image, quantity, priceInCents, available, deleted);
     }
 
     public static class Builder {
@@ -87,6 +101,16 @@ public class BigObject {
 
         public Builder setPrice(String price) {
             this.price = price;
+            return this;
+        }
+
+        public Builder setPriceInCents(int priceInCents) {
+            this.priceInCents = priceInCents;
+            return this;
+        }
+
+        public Builder setImage(String image) {
+            this.image = image;
             return this;
         }
 
