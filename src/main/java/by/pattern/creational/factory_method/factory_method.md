@@ -1,0 +1,1 @@
+The **Factory Method** defines a method, which should be used for creating objects instead of using a direct constructor call (_new_ operator). Subclasses can override this method to change the class of objects that will be created.
